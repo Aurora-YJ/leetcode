@@ -5,7 +5,7 @@ import (
 )
 
 func main() {
-	fmt.Println(NotDecimal("0.0000000000000000000000001"))
+	fmt.Println(NotDecimal("1.00000000"))
 	fmt.Println(NotDecimal("174.2"))
 	fmt.Println(NotDecimal("0.0000000000000000001255"))
 	fmt.Println(NotDecimal("1.205-25856"))
