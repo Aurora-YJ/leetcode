@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type ListNode struct {
 	Val  int
@@ -19,45 +21,30 @@ func createLinkedList(nums []int) *ListNode {
 	}
 	return head
 }
-func printLinkedList(head *ListNode) {
-	for head != nil {
-		fmt.Print(head.Val, " -> ")
-		head = head.Next
-	}
-	fmt.Println("nil")
-}
 
 func main() {
-	l1 := createLinkedList([]int{2, 4, 3}) 
-	l2 := createLinkedList([]int{5, 6, 4}) 
+	l1 := createLinkedList([]int{2, 4, 3})
+	l2 := createLinkedList([]int{5, 6, 4})
 
 	result := addTwoNumbers(l1, l2)
 
-	
-	printLinkedList(result) 
+	fmt.Println(result)
 }
 
-func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
+func addTwoNumbers(l1 *ListNode, l2 *ListNode) []int {
 	arr1 := []int{}
-	arr2 := []int{}
+	
 
-	if l1 == nil {
-		return nil
-	}
-	if l2 == nil {
-		return nil
-	}
-	arr1 = append(arr1, l1.Val)
-	arr2 = append(arr2, l2.Val)
-	if l1.Next != nil{
-		arr1 = append(arr1, l1.Next.Val)
-	}
-	if l2.Next != nil{
-		arr2 = append(arr2, l2.Next.Val)
-	}
+	for l1 != nil || l2 != nil {
+		sum := l1.Val + l2.Val
+		arr1 = append(arr1, sum)
+		l1 = l1.Next
+		l2 = l2.Next
 
+	}
 
 	fmt.Println(arr1)
-	fmt.Println(arr2)
+	
+
 	return nil
 }
