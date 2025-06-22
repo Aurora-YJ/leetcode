@@ -11,25 +11,20 @@ func main() {
 }
 
 func sortColors(nums []int) []int {
-	clr1, clr2, clr3 := 0, 0, len(nums)-1
+	c1, c2, c3 := 0, 0, len(nums)-1
 
-	for clr2 <= clr3 {
-		if nums[clr2] == 0 {
-			helper1 := nums[clr1]
-			nums[clr1] = nums[clr2]
-			nums[clr2] = helper1
-			clr1++
-			clr2++
-		} else if nums[clr2] == 1 {
-			clr2++
-		} else if nums[clr2] == 2 {
-			helper2 := nums[clr3]
-			nums[clr3] = nums[clr2]
-			nums[clr2] = helper2
-			clr3--
+	for c2 <= c3 {
+		switch nums[c2] {
+		case 0:
+			nums[c1], nums[c2] = nums[c2], nums[c1]
+			c2++
+			c1++
+		case 1:
+			c2++
+		case 2:
+			nums[c3], nums[c2] = nums[c2], nums[c3]
+			c3--
 		}
 	}
-
 	return nums
-
 }
