@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func main() {
-	nums := []int{3, 5, 2, 9, 1}
+	nums := []int{-1,-2,3,4}
 	k := 3
 
 	result := maxSubsequence(nums, k)
@@ -13,30 +13,50 @@ func main() {
 
 func maxSubsequence(nums []int, k int) []int {
 
-	res := 0
-	lastRes := 0
-	cont := 0
-	i := 0
-	for  i < len(nums){
-		if cont != k {
-			res += nums[i]
-			cont++
+	if k > len(nums) {
+		return []int{}
+	}
 
-		} else {
-			if res > lastRes{
-				lastRes = res
-				res = 0
-				cont = 0
-				i = i - k -1
+	lenn := len(nums)
+	lastres := 0
+
+
+	ll := []int{}
+
+	for m := 0; m < k; m++ {
+		ll =append(ll, nums[m])
+		lastres += nums[m]
+	}
+
+	lenn--
+
+	j := 1
+	for k <= lenn {
+		res := 0
+	    result := []int{}
+
+
+		H:=0
+		for i := j; i < len(nums); i++ {
+			if H  < k {
+				res += nums[i]
+				H++
+				result =append(result, nums[i])
 			} else  {
-				res = 0
-				cont = 0
-				i = i - k -1
+				break
 			}
 		}
 
+		if res > lastres {
+			lastres = res
+			res = 0
+			ll = result
+		} 
+
+		lenn--
+		j++
 	}
-	fmt.Println("jj" , lastRes, res)
-	return []int{lastRes}
+
+	return ll
 
 }
