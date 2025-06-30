@@ -17,46 +17,35 @@ func maxSubsequence(nums []int, k int) []int {
 		return []int{}
 	}
 
-	lenn := len(nums)
 	lastres := 0
-
 
 	ll := []int{}
 
-	for m := 0; m < k; m++ {
-		ll =append(ll, nums[m])
-		lastres += nums[m]
-	}
-
-	lenn--
-
-	j := 1
-	for k <= lenn {
+	for i := 0; i < len(nums); i++ {
 		res := 0
-	    result := []int{}
+		res += nums[i]
+		v := 0
+		for j := 0; j < len(nums); j++ {
+			if i == j {
+				continue
+			}
 
-
-		H:=0
-		for i := j; i < len(nums); i++ {
-			if H  < k {
-				res += nums[i]
-				H++
-				result =append(result, nums[i])
-			} else  {
+			v++
+			if v  <k {
+				res += nums[j]
+			} else {
 				break
 			}
+			
+			fmt.Println("jjj", res)
 		}
-
+		fmt.Println("-------")
 		if res > lastres {
 			lastres = res
 			res = 0
-			ll = result
 		} 
-
-		lenn--
-		j++
 	}
-
+	fmt.Println("kk", lastres)
 	return ll
 
 }
