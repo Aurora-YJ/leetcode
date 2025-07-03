@@ -1,12 +1,10 @@
 package main
 
-import (
-	"fmt"
-)
+import "fmt"
 
 func main() {
-	nums := []int{-1, -2, 3, 4}
-	k := 3
+	nums := []int{50,-75 , 7}
+	k := 2
 
 	result := maxSubsequence(nums, k)
 
@@ -19,69 +17,76 @@ func maxSubsequence(nums []int, k int) []int {
 		return []int{}
 	}
 
-	mapp := make(map[int][]int)
 
-	for i := 0; i < len(nums); i++ {
-		mapp[nums[i]] = append(mapp[nums[i]], nums[i])
+	
+	indexRes := checker(nums, k)
 
-		res := []int{}
-		for j := 0; j < len(nums); j++ {
-			res = append(res, nums[j])
-		}
-		newRes := checker(res, k-1, nums[i])
-		mapp[nums[i]] = append(mapp[nums[i]], newRes...)
 
+	newRes := []int{}
+	for i := 0; i < len(indexRes); i++ {
+		newRes = append(newRes, nums[indexRes[i]])
 	}
 
-	hh := 0
-	jj := 0
-	result := []int{}
-	for _,v := range mapp {
-
-		for _,h := range v {
-			hh += h
-		}
-
-
-		if hh > jj {
-			jj = hh
-			result = v
-		}
-		hh = 0
-
-	}
-
-	fmt.Println("jj", jj)
-
-	return result
+	return newRes
 
 }
 
-func checker(res []int, k int, intger int) []int {
+
+func mysort(res []int , in int) []int {
+	for i := 0; i < len(res); i++ {
+		if in < res[i] {
+			res = append(res[:i] , append([]int{in} , res[i:]...)...)
+			return res
+		} 
+	}
+	
+	res = append(res, in)
+	return  res
+}
+
+func checker(res []int, k int) []int {
 	result := []int{}
 	for k > 0 {
 		helper := 0
-		index := 0
-
+		in := 0
 		for i := 0; i < len(res); i++ {
-			if res[i] == intger {
-				continue
-			}
 			if helper == 0 {
 				helper = res[i]
-				index = i
+				in = i
 				continue
 			}
-
-			if helper < res[i] {
+			
+			if helper < res[i] && !jj(result, i){
 				helper = res[i]
-				index = i
+				in = i
+			
 			}
+			// ila mal9itix li kbar mno 
 
+			
 		}
-		res = append(res[:index], res[index+1:]...)
-		result = append(result, helper)
+		
+		if jj(result , in) {
+			continue
+		} else {
+			if len(result) == 0 {
+				result = append(result, in)
+			} else {
+				result = mysort(result, in)
+			}
+		}
+		fmt.Println("gg", result)
+
 		k--
 	}
 	return result
+}
+
+func jj(res []int, j int) bool{
+	for _, v := range res{
+		if v == j {
+			return true
+		}
+	}
+	return false
 }
