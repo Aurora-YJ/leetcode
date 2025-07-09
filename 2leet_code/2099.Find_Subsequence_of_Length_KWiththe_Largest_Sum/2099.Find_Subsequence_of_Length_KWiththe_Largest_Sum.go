@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func main() {
-	nums := []int{500 , 100, 444}
+	nums := []int{2,1,3,3}
 	k := 2
 
 	result := maxSubsequence(nums, k)
@@ -16,68 +16,45 @@ func maxSubsequence(nums []int, k int) []int {
 		return []int{}
 	}
 
-	indexRes := checker(nums, k)
+	res := []int{}
 
-	newRes := []int{}
-	for i := 0; i < len(indexRes); i++ {
-		newRes = append(newRes, nums[indexRes[i]])
-	}
+	mapp := make(map[int]int)
 
-	return newRes
-}
+	res = append(res, nums...)
 
-func mysort(res []int) {
-	if len(res) < 2 {
-		return 
-	}
-	if res[len(res)-1] < res[len(res)-2] {
-		swp := res[len(res)-1]
-		res[len(res)-1] = res[len(res)-2]
-		res[len(res)-2] = swp
-	}
-}
-
-func checker(res []int, k int) []int {
-	result := []int{}
 	for k > 0 {
-		helper := res[0]
-		in := 0
-		
-		for i := 1; i < len(res); i++ {
-		
-			if !jj(result, i) && helper < res[i] {
-				helper = res[i]
-				in = i
+		index := checker(res)
+		mapp[res[index]]++
 
-			} 
-			// ila mal9itix li kbar mno
-
-			fmt.Println("iiiiiiiiiiiiii", helper, in)
-		}
-
-		if jj(result, in) {
-			continue
-		} else {
-			result = append(result, in)
-			fmt.Println("-->", result)
-			// if len(result) == 0 {
-			// 	result = append(result, in)
-			// } else {
-			// 	 mysort(result)
-			// }
-		}
-		fmt.Println("gg", result)
-
+		res = append(res[:index], res[index+1:]...)
 		k--
 	}
+	result := []int{}
+	for h := range mapp {
+
+		for i := 0; i < len(nums); i++ {
+			if h == nums[i] {
+				result = append(result, h)
+			}
+			if mapp[h] >= 1 {
+				mapp[h]--
+			} else {
+				break
+			}
+		}
+	}
+
 	return result
 }
 
-func jj(res []int, j int) bool {
-	for _, v := range res {
-		if v == j {
-			return true
+func checker(res []int) int {
+	help := res[0]
+	in := 0
+	for i := 1; i < len(res); i++ {
+		if help < res[i] {
+			help = res[i]
+			in = i
 		}
 	}
-	return false
+	return in
 }
