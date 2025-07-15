@@ -1,6 +1,6 @@
-mod two_sum;
+mod roman_to_integer;
 
 fn main() {    
-    let result = two_sum::two_sum(vec![3,2,4], 6);
-    println!("Result: {:?}", result);
+    let result = roman_to_integer::roman_to_integer("III".to_string());
+    println!("Result: {}", result);
 }
