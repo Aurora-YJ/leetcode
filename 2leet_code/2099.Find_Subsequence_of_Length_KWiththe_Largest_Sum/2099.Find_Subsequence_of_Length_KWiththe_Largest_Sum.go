@@ -5,8 +5,16 @@ import (
 )
 
 func main() {
-	nums := []int{7,3,9,6}
-	k := 2
+	nums := []int{-56, -214, -345, 952, 529, -294, -325, -924, -27, -41, 716, -67, -65, -481}
+	k := 5
+
+	/*
+
+		[952,716,-67,-65,-481]
+		Expected
+		[952,529,-27,-41,716]
+
+	*/
 
 	result := maxSubsequence(nums, k)
 
@@ -20,5 +28,14 @@ func maxSubsequence(nums []int, k int) []int {
 
 	res := []int{}
 
-	return res
+	toRemove := len(nums) - k
+	for i := 0; i < len(nums); i++ {
+		for len(res) > 0 && res[len(res)-1] < nums[i] && toRemove > 0 && len(nums[i:]) > toRemove {
+			res = res[:len(res)-1]
+			toRemove--
+		}
+		res = append(res, nums[i])
+	}
+
+	return res[:k]
 }
