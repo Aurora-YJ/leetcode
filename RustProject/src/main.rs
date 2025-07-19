@@ -1,6 +1,6 @@
-mod roman_to_integer;
+mod find_the_original_typed_string;
 
 fn main() {    
-    let result = roman_to_integer::roman_to_integer("III".to_string());
+    let result = find_the_original_typed_string::possible_string_count("ere".to_string());
     println!("Result: {}", result);
 }
