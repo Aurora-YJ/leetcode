@@ -1,6 +1,6 @@
-mod find_the_original_typed_string;
+mod apply_operations_to_an_array;
 
 fn main() {    
-    let result = find_the_original_typed_string::possible_string_count("ere".to_string());
-    println!("Result: {}", result);
+    let result = apply_operations_to_an_array::apply_operations((&[847,847,0,0,0,399,416,416,879,879,206,206,206,272]).to_vec());
+    println!("Result: {:?}", result);
 }
