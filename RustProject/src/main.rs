@@ -1,7 +1,7 @@
-mod convert_binary_number_in_a_linked_list;
+mod reverse_linked_list;
 
 
-use convert_binary_number_in_a_linked_list::{Solution, ListNode};
+use reverse_linked_list::{Solution, ListNode};
 
 
 fn build_linked_list(values: Vec<i32>) -> Option<Box<ListNode>> {
@@ -18,11 +18,14 @@ fn build_linked_list(values: Vec<i32>) -> Option<Box<ListNode>> {
 }
 
 fn main() {
-    let binary_values = vec![1, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0];
+    let binary_values = vec![1,2,3,4,5];
 
     let head = build_linked_list(binary_values);
 
-    let result = Solution::get_decimal_value(head);
+    let left = 2;
+    let right = 4;
 
-    println!("Result: {}", result);
+    let result = Solution::reverse_between(head, left , right);
+
+    println!("Result: {:?}", result);
 }
