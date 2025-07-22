@@ -31,12 +31,20 @@
 // }
 
 
-mod delete_characters_to_make_fancy_string;
+mod maximum_erasur_value;
 
-use delete_characters_to_make_fancy_string::{Solution};
+use maximum_erasur_value::{Solution};
 
 fn main() {
-    let result = Solution::make_fancy_string("leeeetcoooodeeee     aaaabaaaa".to_string());
+    // let nums = vec![187,470,25,436,538,809,441,167,477,110,275,133,666,345,411,459,490,266,987,965,429,166,809,340,467,
+    // 318,125,165,809,610,31,585,970,306,42,189,169,743,78,810,70,382,367,490,
+    // 787,670,476,278,775,673,299,19,893,817,971,458,409,886,434];
+
+    //let nums = vec![4,2,4,5,6];
+
+
+    let nums = vec![10000,1,10000,1,1,1,1,1,1];
+    let result = Solution::maximum_unique_subarray(nums);
 
     println!("{}", result);
 } 
