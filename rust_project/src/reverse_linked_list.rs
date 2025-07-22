@@ -21,36 +21,29 @@ pub struct Solution;
 
 impl Solution {
     pub fn reverse_between(head: Option<Box<ListNode>>, left: i32, right: i32) -> Option<Box<ListNode>> {
+      
        let mut node =  Some(Box::new(ListNode {
          val : 0,
-         next: None,
+         next: head,
        }));
 
 
 
-       let mut c = head.as_ref();
+       let mut c = node.as_mut();
+       
+
        
        while let Some(nd) = c {
 
-          if let Some(ref mut inner_node) = node {
+          if nd.val == left {
             
-            if nd.val == left {
-              inner_node.val = nd.val;
-              inner_node.next = nd.next.clone(); 
-            }
-
-            if nd.val == right {
-              inner_node.val = nd.val;
-              inner_node.next = nd.next.clone(); 
-            }
           }
 
-        
+          if nd.val == right {
+            
+          }
 
-        
-
-
-          c = nd.next.as_ref();
+          c = nd.next.as_mut();
        }
 
        node
