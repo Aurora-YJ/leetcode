@@ -1,13 +1,11 @@
-mod sum_triplet;
+mod count_hills_and_valleys_in_an_array;
 
-use sum_triplet::{Solution};
+use count_hills_and_valleys_in_an_array::{Solution};
 
 fn main() {
-    let nums = vec![-4,-2,1,-5,-4,-4,4,-2,0,4,0,-2,3,1,-5,0];
+    let nums = vec![6,6,5,5,4,1];
 
-
-
-    let result = Solution::three_sum(nums);
+    let result = Solution::count_hill_valley(nums);
 
     println!("{:?}", result);
 }
