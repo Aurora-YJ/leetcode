@@ -3,15 +3,15 @@ pub struct Solution;
 impl Solution {
     pub fn count_hill_valley(nums: Vec<i32>) -> i32 {
       
-       // [2,4,1,1,6,5]
-
+       // vec![57,57,57,57,57,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,85,85,85,86,86,86];
        let mut count = 0;
         for i in 0..nums.len() {
             if i > 0 && i < nums.len()-1  {
 
-                if nums[i] == nums[i-1] {
-                    continue;
-                }  
+                if i > 0 && nums[i] == nums[i - 1] {
+                     continue;
+                }
+              
                 let mut leftk = false;
                 let mut lefts = false;
                 
@@ -19,7 +19,9 @@ impl Solution {
                 let mut rights = false;
 
                 let mut c = 1;
-                loop {
+                while i + c < nums.len() {
+
+                    
                     if  nums[i] > nums[i+c] {
                         rights = true;
 
@@ -31,17 +33,15 @@ impl Solution {
                         break;
                     } 
 
-                    if c == nums.len() -1 {
-                        break;
-                    }
+                   
                     c+=1;
                 }
 
 
 
                 let mut j = 1;
-                loop {
-                    
+
+                while i >= j {
                     if  nums[i] > nums[i-j] {
                         lefts = true;
                         break;
