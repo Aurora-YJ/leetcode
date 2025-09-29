@@ -10,14 +10,13 @@ pub fn main() void {
 }
 
 pub fn ConvertIntegertotheSumofTwoNoZeroIntegers(n: i32) []i32 {
-    var n_usize: usize = 0;
-    if (n >= 0) {
-        n_usize = @intCast(usize, n);
-    }
+    // var help: i32  = 1;
+   for (1..n) |v| {
+      const n1: i32 = v; 
+      const n2: i32 = n - v;
 
-    for (0..n_usize) |value| {
-        std.debug.print("{d}\n", .{value});
-    }
-
-    return &[_]i32{ 4, 5 };
+      if (n1 + n2 == n) {
+        std.debug.print("%d %d", .{n1 , n2});
+      }
+   }
 }
